@@ -34,16 +34,16 @@ public class Recipe implements Serializable {
 	 * @param test1 - test string 1.
 	 * @param test2 - test string 2.
 	 */
-	public Recipe(String test1) {
+	public Recipe(String name) {
 		this.id = UUID.randomUUID();
-		this.name = test1;
+		this.name = name;
 	}
 
 	/**
 	 * Returns the test string 1.
 	 * @return the test string 1.
 	 */
-	public String getTest1() {
+	public String getName() {
 		return name;
 	}
 
@@ -67,8 +67,12 @@ public class Recipe implements Serializable {
 	 * Sets the test string 1 value to the inputted value.
 	 * @param test1 - what to set the test string 1 to.
 	 */
-	public void setTest1(String test1) {
-		this.name = test1;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void assignID() {
+		this.id = UUID.randomUUID();
 	}
 		
 }

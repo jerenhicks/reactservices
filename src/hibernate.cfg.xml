@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/nuhuh</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/reactdb</property>
 		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">Ashley5659!</property>
+		<property name="hibernate.connection.password">react</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>

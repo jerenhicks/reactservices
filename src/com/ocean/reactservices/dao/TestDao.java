@@ -9,6 +9,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 	
 	@Override
 	public Recipe create(Recipe model) {
+		model.assignID();
 		openCurrentSessionwithTransaction();
 		getCurrentSession().save(model);
 		closeCurrentSessionwithTransaction();
