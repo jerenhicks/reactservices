@@ -1,9 +1,11 @@
 package com.ocean.reactservices.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,10 +23,10 @@ public class SearchController {
 	    return testDao.readAll();
 	}
 	
-//	@RequestMapping(method=RequestMethod.GET, value ="/test/{id}")  
-//	public @ResponseBody String getById(String id) {
-//		return testDao.read(UUID.fromString(id)).toString();
-//	}
+	@RequestMapping(method=RequestMethod.GET, value ="/recipe/{id}")  
+	public @ResponseBody Recipe getById(@PathVariable String id) {
+		return testDao.read(UUID.fromString(id));
+	}
 
 	@RequestMapping(method=RequestMethod.POST, value ="/recipe")  
 	public @ResponseBody Recipe createTest(@ModelAttribute("recipe")Recipe recipe) {
