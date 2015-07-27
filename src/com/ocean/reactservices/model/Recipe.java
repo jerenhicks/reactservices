@@ -21,15 +21,15 @@ public class Recipe implements Serializable {
 	private UUID id;
 	/** test string 1.*/
 	private String name;
-	private int stars;
+	private float rating;
 	private String description;
 	
-	public int getStars() {
-		return stars;
+	public float getRating() {
+		return rating;
 	}
 
-	public void setStars(int stars) {
-		this.stars = stars;
+	public void setRating(float rating) {
+		this.rating = rating;
 	}
 
 	public String getDescription() {
