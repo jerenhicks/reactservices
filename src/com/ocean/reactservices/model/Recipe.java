@@ -21,7 +21,25 @@ public class Recipe implements Serializable {
 	private UUID id;
 	/** test string 1.*/
 	private String name;
+	private int stars;
+	private String description;
 	
+	public int getStars() {
+		return stars;
+	}
+
+	public void setStars(int stars) {
+		this.stars = stars;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	/**
 	 * Constructor. Utilized by hibernate.
 	 */
