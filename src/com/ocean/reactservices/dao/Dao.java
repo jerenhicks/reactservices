@@ -1,13 +1,12 @@
 package com.ocean.reactservices.dao;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface Dao<T> {
 	
 	public T create(T model);
 	
-	public T read(UUID id);
+	public T read(Integer id);
 	
 	public List<T> readAll();
 	

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -18,7 +19,8 @@ public class Recipe implements Serializable {
 	private static final long serialVersionUID = 6171148542943236344L;
 	/** id of this object.*/
 	@Id
-	private UUID id;
+	@GeneratedValue
+	private Integer id;
 	/** test string 1.*/
 	private String name;
 	private float rating;
@@ -53,7 +55,6 @@ public class Recipe implements Serializable {
 	 * @param test2 - test string 2.
 	 */
 	public Recipe(String name) {
-		this.id = UUID.randomUUID();
 		this.name = name;
 	}
 
@@ -69,7 +70,7 @@ public class Recipe implements Serializable {
 	 * Returns an 
 	 * @return
 	 */
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -77,7 +78,7 @@ public class Recipe implements Serializable {
 	 * Sets the id to the inputted value.
 	 * @param id - what to set the id to.
 	 */
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -89,8 +90,5 @@ public class Recipe implements Serializable {
 		this.name = name;
 	}
 	
-	public void assignID() {
-		this.id = UUID.randomUUID();
-	}
 		
 }

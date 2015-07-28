@@ -9,7 +9,6 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 	
 	@Override
 	public Recipe create(Recipe model) {
-		model.assignID();
 		openCurrentSessionwithTransaction();
 		getCurrentSession().save(model);
 		closeCurrentSessionwithTransaction();
@@ -17,7 +16,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 	}
 
 	@Override
-	public Recipe read(UUID id) {
+	public Recipe read(Integer id) {
 		openCurrentSessionwithTransaction();
 		Recipe value = (Recipe) getCurrentSession().get(Recipe.class, id);
 		closeCurrentSessionwithTransaction();
