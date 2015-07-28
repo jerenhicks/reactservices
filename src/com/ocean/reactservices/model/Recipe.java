@@ -25,7 +25,16 @@ public class Recipe implements Serializable {
 	private String name;
 	private float rating;
 	private String description;
+	private String imageLocation;
 	
+	public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
+	}
+
 	public float getRating() {
 		return rating;
 	}
