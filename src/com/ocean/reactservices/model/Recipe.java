@@ -1,11 +1,16 @@
 package com.ocean.reactservices.model;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 
 /**
  * Test object.
@@ -13,6 +18,7 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Indexed
 public class Recipe implements Serializable {
 	
 	/** serial id.*/
@@ -22,6 +28,7 @@ public class Recipe implements Serializable {
 	@GeneratedValue
 	private Integer id;
 	/** test string 1.*/
+	@Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
 	private String name;
 	private float rating;
 	private String description;

@@ -63,6 +63,11 @@ public class SearchController {
 		return testDao.create(recipe);
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value ="/recipe/search")  
+	public @ResponseBody List<Recipe> createTest(@RequestParam("query") String queryString) {
+		return testDao.search(queryString);
+	}
+	
     public String handleFileUpload(MultipartFile file){
         if (!file.isEmpty()) {
             try {
