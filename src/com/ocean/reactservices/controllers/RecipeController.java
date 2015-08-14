@@ -5,7 +5,6 @@ import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +14,6 @@ import java.util.UUID;
 import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,25 +23,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ocean.reactservices.dao.TestDao;
+import com.ocean.reactservices.dao.RecipeDao;
 import com.ocean.reactservices.model.Recipe;
 
 @Controller
-public class SearchController {
-	
+public class RecipeController {
+	/** where to upload the file to.*/
 	@Value("${file.upload.directory}")
     private String fileUploadDirectory;
-	private TestDao testDao = new TestDao();
+	/** recipe dao.*/
+	private RecipeDao recpieDao = new RecipeDao();
+	/** format that should be used file location wise when saving images.*/
 	private static final String RECIPE_IMAGE_LOCATION = "/recipe/image/%s";
 	
 	@RequestMapping(method=RequestMethod.GET, value ="/recipe")  
-	public @ResponseBody List<Recipe> getTest(){
-	    return testDao.readAll();
+	public @ResponseBody List<Recipe> getRecipes(){
+	    return recpieDao.readAll();
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value ="/recipe/{id}")  
-	public @ResponseBody Recipe getById(@PathVariable Integer id) {
-		return testDao.read(id);
+	public @ResponseBody Recipe getRecipes(@PathVariable Integer id) {
+		return recpieDao.read(id);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value ="/recipe/image/{imageid}", headers = "Accept=image/jpeg, image/jpg, image/png, image/gif")  
@@ -57,15 +57,15 @@ public class SearchController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value ="/recipe")  
-	public @ResponseBody Recipe createTest(@ModelAttribute("recipe")Recipe recipe, @RequestParam("image") MultipartFile file) {
+	public @ResponseBody Recipe createRecipe(@ModelAttribute("recipe")Recipe recipe, @RequestParam("image") MultipartFile file) {
 		String fileName = handleFileUpload(file);
 		recipe.setImageLocation(fileName);
-		return testDao.create(recipe);
+		return recpieDao.create(recipe);
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value ="/recipe/search")  
-	public @ResponseBody List<Recipe> createTest(@RequestParam("query") String queryString) {
-		return testDao.search(queryString);
+	public @ResponseBody List<Recipe> searchForRecipe(@RequestParam("query") String queryString) {
+		return recpieDao.search(queryString);
 	}
 	
     public String handleFileUpload(MultipartFile file){
@@ -74,8 +74,9 @@ public class SearchController {
                 byte[] bytes = file.getBytes();
                 UUID id = UUID.randomUUID();
                 File dir = new File(fileUploadDirectory + File.separator + "images" + File.separator + id);
-                if (!dir.exists())
+                if (!dir.exists()) {
                     dir.mkdirs();
+                }
  
                 // Create the file on server
                 File serverFile = new File(dir.getAbsolutePath() + File.separator + "image");

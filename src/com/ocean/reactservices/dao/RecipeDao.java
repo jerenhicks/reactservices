@@ -8,8 +8,9 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 
 import com.ocean.reactservices.model.Recipe;
 
-public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
+public class RecipeDao extends HibernateDaoUtil implements Dao<Recipe> {
 	
+	/** {@inheritDoc}.*/
 	@Override
 	public Recipe create(Recipe model) {
 		openCurrentSessionwithTransaction();
@@ -18,6 +19,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 		return read(model.getId());
 	}
 
+	/** {@inheritDoc}.*/
 	@Override
 	public Recipe read(Integer id) {
 		openCurrentSessionwithTransaction();
@@ -26,6 +28,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 		return value; 
 	}
 	
+	/** {@inheritDoc}.*/
 	@Override
 	public List<Recipe> readAll() {
 		openCurrentSessionwithTransaction();
@@ -34,6 +37,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 		return books;
 	}
 
+	/** {@inheritDoc}.*/
 	@Override
 	public Recipe update(Recipe model) {
 		openCurrentSessionwithTransaction();
@@ -42,6 +46,7 @@ public class TestDao extends HibernateDaoUtil implements Dao<Recipe> {
 		return read(model.getId());
 	}
 
+	/** {@inheritDoc}.*/
 	@Override
 	public void delete(Recipe model) {
 		openCurrentSessionwithTransaction();

@@ -16,5 +16,6 @@
 		
 		       <!-- mappings for annotated classes -->
         <mapping class="com.ocean.reactservices.model.Recipe"/>
+        <mapping class="com.ocean.reactservices.model.Ingredient"/>
 	</session-factory>
 </hibernate-configuration>
